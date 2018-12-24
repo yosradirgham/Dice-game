@@ -1,7 +1,11 @@
-
+//2. add an input field to the html code where players can set the winning score, so that they can change the predefined score of 100 
 var currentScore, currentPlayer, globalScore, end;
-
+var x = 0;
+var winningScore = document.querySelector('.winning-score').value;
+//console.log(winningScore);
+	
 init();
+
 
 function init(){
 	currentScore = 0;
@@ -24,8 +28,13 @@ document.querySelector('.btn-roll').addEventListener('click',function(){
 	if(!end){
 		var dice = Math.trunc(Math.random()*6)+1;
 		document.querySelector('.dice').src = 'dice-'+dice+'.png';
-		if(dice == 1) currentPlayer = nextPlayer();
+		// a player looses his entire score where he rolls two 6 in a row. after that it's the next player's turb
+		if((dice == 6 && x == 6) || dice == 1){ 
+			x = 0;
+			currentPlayer = nextPlayer();
+		}
 		else {
+			x = dice;
 			currentScore += dice;
 			document.getElementById('current-'+currentPlayer).textContent = currentScore; 
 		}
@@ -43,6 +52,7 @@ document.querySelector('.btn-hold').addEventListener('click',function(){
 		}
 		else{
 			document.getElementById('score-'+currentPlayer).textContent = globalScore[currentPlayer];
+			x = 0;
 			currentPlayer = nextPlayer();
 		}
 });
