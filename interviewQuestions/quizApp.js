@@ -1,3 +1,4 @@
+var score = 0;
 
 (function(){
 
@@ -14,25 +15,27 @@
 	
 	var questions = [q1, q2, q3, q4];
 
-
-	var x = Math.trunc(Math.random()*questions.length);
-
-
 	Question.prototype.askQuestion = function(){
 	    console.log(this.question);//display the questions
 	    for(let i=0; i<this.answers.length; i++)console.log(i+'. '+this.answers[i]);
 	}
 
-
 	Question.prototype.checkAnswer = function(){
-	    if(userAnswer == this.isCorrect) console.log('correct answer!');
-	    else console.log('try again');
+	    if(userAnswer == this.isCorrect){
+	    	++score;
+			console.log('correct answer!\n'+'your score now is: '+score);	
+	    }
+	    else console.log('try again\n'+'your score is still: '+score);
 	}
 
-	questions[x].askQuestion();
-	userAnswer = prompt('Please select the correct answer!');
-	questions[x].checkAnswer();
-	
+	while(1){
+		var x = Math.trunc(Math.random()*questions.length);
+		questions[x].askQuestion();
+		userAnswer = prompt('Please select the correct answer!');
+		questions[x].checkAnswer();
+		playing = prompt('Wanna continue playing? (yes/no)');
+		if(playing == 'no') break;
+	}
 })();
 
 /*
