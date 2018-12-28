@@ -1,8 +1,8 @@
-<!DOCTYPE html>
+/*<!DOCTYPE html>
 <html>
 	<head></head>
 	<body>
-		<script>
+		<script>*/
 
 			class FancyList {
 				
@@ -222,6 +222,6 @@
 				}
 		}
 	
-		</script>
+		/*</script>
 	</body>
-</html>
+</html>*/
